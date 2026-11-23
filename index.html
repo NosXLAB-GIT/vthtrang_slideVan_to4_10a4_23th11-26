@@ -990,9 +990,13 @@
       box-shadow: 0 2px 8px rgba(0,0,0,0.05);
     }
     .nosxlab-logo-svg {
-      width: calc(1.2 * var(--u));
-      height: calc(1.2 * var(--u));
+      width: calc(1.4 * var(--u));
+      height: calc(1.4 * var(--u));
+      border-radius: 50%;
+      object-fit: cover;
       display: block;
+      border: 1.5px solid var(--ribbon-red);
+      box-shadow: 0 1px 4px rgba(230,0,57,0.2);
     }
     .finale-quote {
       font-family: var(--font-editorial);
@@ -1414,8 +1418,8 @@
 
               <!-- Main Vertical Screen -->
               <div class="phone-screen-box" id="tv-screen-container" data-slot="main-video">
-                <video id="tv-video-player" playsinline preload="metadata" style="display:none;"></video>
-                <div class="phone-placeholder" id="tv-placeholder-box">
+                <video id="tv-video-player" src="video.mp4" playsinline preload="auto" style="display:block; width:100%; height:100%; object-fit:cover;"></video>
+                <div class="phone-placeholder" id="tv-placeholder-box" style="display:none;">
                   <div style="width: calc(4.5 * var(--u)); height: calc(4.5 * var(--u)); border-radius: 50%; background: rgba(230,0,57,0.18); border: 2px solid var(--ribbon-red); display: flex; align-items: center; justify-content: center; box-shadow: 0 0 15px rgba(230,0,57,0.35); margin-bottom: calc(0.3 * var(--u));">
                     <svg width="22" height="22" viewBox="0 0 24 24" fill="#E60039">
                       <polygon points="6,3 20,12 6,21"/>
@@ -1423,7 +1427,7 @@
                   </div>
                   <h4 style="font-weight: 800; font-size: calc(1.3 * var(--u)); color: white;">Video Khởi Động</h4>
                   <p style="font-size: calc(1 * var(--u)); color: #FFB3CE; line-height: 1.35; max-width: calc(14 * var(--u));">
-                    Tỉ lệ 9:16 dọc • Nhấp để tải video từ máy
+                    Không tìm thấy file video.mp4
                   </p>
                   <label class="btn-kawaii" style="cursor: pointer; font-size: calc(1.05 * var(--u)); padding: calc(0.6 * var(--u)) calc(1.3 * var(--u)); margin-top: calc(0.4 * var(--u));">
                     📁 Chọn file video
@@ -1446,7 +1450,7 @@
               <div class="video-features-list">
                 <div class="video-feature-item">
                   <span>📱</span>
-                  <span><strong>Tối ưu khung hình dọc (9:16):</strong> Trải nghiệm trọn vẹn, sắc nét như trên thiết bị di động.</span>
+                  <span><strong>Tối ưu khung hình dọc (9:16):</strong> Trải nghiệm trọn vẹn, sắc nét với file <code>video.mp4</code>.</span>
                 </div>
                 <div class="video-feature-item">
                   <span>💡</span>
@@ -1454,17 +1458,32 @@
                 </div>
               </div>
 
-              <!-- Video Action Buttons (Clean & Professional) -->
+              <!-- Video Action Buttons (Tua ngược, Phát, Dừng, Tua tới, Âm thanh) -->
               <div class="video-action-bar">
-                <button class="btn-kawaii" id="tv-play-btn" style="font-size: calc(1.2 * var(--u)); padding: calc(0.8 * var(--u)) calc(2 * var(--u));">
-                  ▶ Phát / Tạm Dừng
+                <button class="btn-kawaii btn-kawaii-outline" id="tv-rewind-btn" title="Tua lùi lại 10 giây" style="background: rgba(255,255,255,0.12); color: white; border-color: rgba(255,255,255,0.35); font-size: calc(1.15 * var(--u)); padding: calc(0.65 * var(--u)) calc(1.3 * var(--u));">
+                  ⏪ -10s
                 </button>
-                <button class="btn-kawaii btn-kawaii-outline" id="tv-mute-btn" style="background: rgba(255,255,255,0.12); color: white; border-color: rgba(255,255,255,0.35); font-size: calc(1.2 * var(--u)); padding: calc(0.8 * var(--u)) calc(1.8 * var(--u));">
+                <button class="btn-kawaii" id="tv-play-btn" title="Phát hoặc tạm dừng video" style="font-size: calc(1.2 * var(--u)); padding: calc(0.65 * var(--u)) calc(1.8 * var(--u));">
+                  ▶ Phát Video
+                </button>
+                <button class="btn-kawaii btn-kawaii-outline" id="tv-stop-btn" title="Dừng video và quay về đầu" style="background: rgba(255,255,255,0.12); color: white; border-color: rgba(255,255,255,0.35); font-size: calc(1.15 * var(--u)); padding: calc(0.65 * var(--u)) calc(1.3 * var(--u));">
+                  ⏹ Dừng
+                </button>
+                <button class="btn-kawaii btn-kawaii-outline" id="tv-forward-btn" title="Tua tới 10 giây" style="background: rgba(255,255,255,0.12); color: white; border-color: rgba(255,255,255,0.35); font-size: calc(1.15 * var(--u)); padding: calc(0.65 * var(--u)) calc(1.3 * var(--u));">
+                  ⏩ +10s
+                </button>
+                <button class="btn-kawaii btn-kawaii-outline" id="tv-mute-btn" title="Bật hoặc tắt tiếng" style="background: rgba(255,255,255,0.12); color: white; border-color: rgba(255,255,255,0.35); font-size: calc(1.15 * var(--u)); padding: calc(0.65 * var(--u)) calc(1.3 * var(--u));">
                   🔊 Âm Thanh
                 </button>
               </div>
 
-              <div style="margin-top: calc(1.8 * var(--u)); font-size: calc(1.15 * var(--u)); color: #FF99BD; display: flex; align-items: center; gap: calc(0.8 * var(--u));">
+              <!-- Video Timeline / Scrubber -->
+              <div class="video-timeline-wrap" style="display: flex; align-items: center; gap: calc(1 * var(--u)); width: 100%; max-width: calc(48 * var(--u)); margin-top: calc(0.8 * var(--u)); background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.18); padding: calc(0.4 * var(--u)) calc(1.2 * var(--u)); border-radius: 999px;">
+                <input type="range" id="video-seek-slider" min="0" max="100" value="0" step="0.1" title="Kéo để tua video" style="flex:1; accent-color: var(--ribbon-red); cursor: pointer; height: calc(0.6 * var(--u));">
+                <span id="video-time-display" style="font-size: calc(1.05 * var(--u)); color: #FFD6E5; font-weight: 700; white-space: nowrap; font-family: monospace;">00:00 / 00:00</span>
+              </div>
+
+              <div style="margin-top: calc(1.4 * var(--u)); font-size: calc(1.15 * var(--u)); color: #FF99BD; display: flex; align-items: center; gap: calc(0.8 * var(--u));">
                 <span>🏫 Trường THPT Ninh Bình - Bạc Liêu</span>
                 <span>•</span>
                 <span>Lớp 10A4 — Tổ 4</span>
@@ -1690,16 +1709,11 @@
           <p class="slide-subtitle">Nhấp vào từng bức ảnh để lắng nghe chi tiết góc nhìn</p>
 
           <div class="photo-cluster">
-            <!-- Polaroid 1 -->
+            <!-- Polaroid 1: Nỗi Lòng Người Mẹ (1.jpg) -->
             <div class="polaroid" onclick="openDeepDive(1)">
               <div class="washi-tape" style="top:-10px;"></div>
               <div class="polaroid-img" data-slot="img-proof-1">
-                <!-- Procedural Art Mother Silhouette -->
-                <svg viewBox="0 0 100 100" width="80" height="80">
-                  <circle cx="50" cy="35" r="20" fill="#FF85B3"/>
-                  <path d="M20 90 Q50 60 80 90 Z" fill="#E60039"/>
-                  <path d="M60 40 Q75 45 65 60" stroke="#FFE066" stroke-width="3" fill="none"/>
-                </svg>
+                <img src="1.jpg" alt="Nỗi Lòng Người Mẹ" loading="lazy">
               </div>
               <div class="polaroid-caption">
                 <h4>Nỗi Lòng Người Mẹ</h4>
@@ -1707,17 +1721,11 @@
               </div>
             </div>
 
-            <!-- Polaroid 2 -->
+            <!-- Polaroid 2: Gánh Nặng Đích Tôn (3.jpg) -->
             <div class="polaroid" onclick="openDeepDive(2)">
               <div class="washi-tape" style="top:-10px; background: rgba(148, 168, 255, 0.7);"></div>
               <div class="polaroid-img" data-slot="img-proof-2">
-                <!-- Procedural Art Son Under Burden -->
-                <svg viewBox="0 0 100 100" width="80" height="80">
-                  <circle cx="50" cy="30" r="18" fill="#94A8FF"/>
-                  <path d="M25 85 Q50 55 75 85 Z" fill="#2D4DC4"/>
-                  <!-- Heavy weight on shoulders -->
-                  <rect x="15" y="48" width="70" height="10" rx="3" fill="#FFE066"/>
-                </svg>
+                <img src="3.jpg" alt="Gánh Nặng Đích Tôn" loading="lazy">
               </div>
               <div class="polaroid-caption">
                 <h4>Gánh Nặng "Đích Tôn"</h4>
@@ -1725,17 +1733,11 @@
               </div>
             </div>
 
-            <!-- Polaroid 3 -->
+            <!-- Polaroid 3: Gia Đình MC Quyền Linh (2.jpg) -->
             <div class="polaroid" onclick="openDeepDive(3)">
               <div class="washi-tape" style="top:-10px; background: rgba(255, 224, 102, 0.8);"></div>
               <div class="polaroid-img" data-slot="img-proof-3">
-                <!-- Procedural Art Happy Family MC Quyen Linh -->
-                <svg viewBox="0 0 100 100" width="80" height="80">
-                  <circle cx="35" cy="35" r="16" fill="#FFB3CE"/>
-                  <circle cx="65" cy="35" r="16" fill="#FF85B3"/>
-                  <ellipse cx="50" cy="75" rx="35" ry="20" fill="#E60039"/>
-                  <text x="50" y="80" font-family="Quicksand" font-size="12" fill="white" font-weight="bold" text-anchor="middle">Lọ Lem & Hạt Dẻ</text>
-                </svg>
+                <img src="2.jpg" alt="Gia Đình MC Quyền Linh" loading="lazy">
               </div>
               <div class="polaroid-caption">
                 <h4>Gia Đình MC Quyền Linh</h4>
@@ -1883,13 +1885,9 @@
             <!-- Small sleek NosXLAB Studio credit badge -->
             <div style="margin-top: calc(0.6 * var(--u));">
               <div class="nosxlab-credit">
-                <!-- Mini Geometric Studio SVG Logo -->
-                <svg class="nosxlab-logo-svg" viewBox="0 0 40 40" fill="none">
-                  <rect width="40" height="40" rx="8" fill="#E60039"/>
-                  <path d="M10 28 L10 12 L16 12 L24 24 L24 12 L30 12 L30 28 L16 16 L16 28 Z" fill="white"/>
-                  <circle cx="32" cy="10" r="3" fill="#FFE066"/>
-                </svg>
-                <span>Powered by <strong>Vũ Thu Trang</strong> • Copyright © 2026. All rights reserved.</span>
+                <!-- NosXLAB Studio Avatar Logo -->
+                <img class="nosxlab-logo-svg" src="https://avatars.githubusercontent.com/u/225241218?s=200&v=4" alt="NosXLAB Studio" loading="lazy">
+                <span>Powered by <strong>NosXLAB Studio</strong> • Copyright © 2026. All rights reserved.</span>
               </div>
             </div>
           </div>
@@ -1931,7 +1929,8 @@
         <div class="modal-content-card">
           <button class="modal-close-btn" onclick="closeDeepDive()">✕</button>
           <div class="kicker" id="modal-kicker">🎀 Góc Nhìn Thực Tế 🎀</div>
-          <h3 id="modal-title" style="color: var(--ribbon-red); font-size: calc(2 * var(--u)); margin-bottom: calc(1 * var(--u));">Tiêu đề dẫn chứng</h3>
+          <img id="modal-img" src="" alt="Dẫn chứng thực tế" style="width: 100%; max-height: calc(20 * var(--u)); object-fit: cover; border-radius: calc(1.2 * var(--u)); margin-bottom: calc(1 * var(--u)); display: none; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
+          <h3 id="modal-title" style="color: var(--ribbon-red); font-size: calc(2 * var(--u)); margin-bottom: calc(0.8 * var(--u));">Tiêu đề dẫn chứng</h3>
           <p id="modal-body" style="font-size: calc(1.35 * var(--u)); color: #361421; line-height: 1.6;">Nội dung chi tiết...</p>
         </div>
       </div>
@@ -2018,6 +2017,12 @@
         isTransitioning = true;
 
         playKawaiiChime(n > currentSlide ? 783.99 : 523.25);
+
+        // Auto-pause video when leaving slide 3
+        if (currentSlide === 3 && n !== 3 && videoPlayer && !videoPlayer.paused) {
+          videoPlayer.pause();
+          if (tvPlayBtn) tvPlayBtn.textContent = '▶ Phát Video';
+        }
 
         // Immediate silky-smooth slide swap
         document.querySelectorAll('.slide').forEach(s => s.classList.remove('active'));
@@ -2183,14 +2188,17 @@
       const deepDives = {
         1: {
           title: "Nỗi Lòng Người Mẹ Sinh Hai Con Gái",
+          img: "1.jpg",
           text: "Tại nhiều vùng nông thôn lẫn thành thị, người phụ nữ sinh hai con gái thường xuyên phải đón nhận những ánh mắt ái ngại, lời châm chọc 'không biết đẻ' hay câu hỏi thiếu tế nhị: 'Bao giờ cố kiếm thằng cu?'. Căng thẳng kéo dài khiến nhiều người trầm cảm, thậm chí nguy hiểm tính mạng vì tìm mọi cách sinh con trai bằng được."
         },
         2: {
           title: "Gánh Nặng 'Đích Tôn' Trên Đôi Vai Người Con Trai",
+          img: "3.jpg",
           text: "Được ưu tiên mọi nguồn lực nhưng các chàng trai trưởng lại bị tước đoạt quyền sống là chính mình. Họ bị đóng khung trong áp lực phải thành đạt, gánh vác hương hỏa và không bao giờ được bộc lộ sự yếu đuối. Rất nhiều bạn nam chia sẻ cảm giác nghẹt thở dưới kỳ vọng nặng nề của dòng họ."
         },
         3: {
           title: "Gia Đình MC Quyền Linh: Tự Hào & Yêu Thương Trọn Vẹn",
+          img: "2.jpg",
           text: "Từng chịu nhiều lời xì xào khi chỉ có hai con gái, MC Quyền Linh và vợ đã chứng minh tình yêu thương và sự nuôi dạy tử tế mới là điều cốt lõi. Hai cô con gái Lọ Lem và Hạt Dẻ không chỉ xinh đẹp mà còn chăm ngoan, học giỏi, tích cực làm việc thiện, trở thành niềm tự hào lớn lao của cả gia đình."
         }
       };
@@ -2200,6 +2208,15 @@
         if (!item) return;
         document.getElementById('modal-title').textContent = item.title;
         document.getElementById('modal-body').textContent = item.text;
+        const modalImg = document.getElementById('modal-img');
+        if (modalImg) {
+          if (item.img) {
+            modalImg.src = item.img;
+            modalImg.style.display = 'block';
+          } else {
+            modalImg.style.display = 'none';
+          }
+        }
         deepDiveModal.classList.add('open');
         playKawaiiChime(700);
       };
@@ -2211,63 +2228,120 @@
       const videoPlayer = document.getElementById('tv-video-player');
       const videoPlaceholder = document.getElementById('tv-placeholder-box');
       const videoFileInput = document.getElementById('video-file-input');
-      const videoFileInputAlt = document.getElementById('video-file-input-alt');
       const tvPlayBtn = document.getElementById('tv-play-btn');
+      const tvStopBtn = document.getElementById('tv-stop-btn');
+      const tvRewindBtn = document.getElementById('tv-rewind-btn');
+      const tvForwardBtn = document.getElementById('tv-forward-btn');
       const tvMuteBtn = document.getElementById('tv-mute-btn');
+      const videoSeekSlider = document.getElementById('video-seek-slider');
+      const videoTimeDisplay = document.getElementById('video-time-display');
+
+      function formatTime(secs) {
+        if (!secs || isNaN(secs)) return '00:00';
+        const m = Math.floor(secs / 60);
+        const s = Math.floor(secs % 60);
+        return `${m < 10 ? '0' : ''}${m}:${s < 10 ? '0' : ''}${s}`;
+      }
+
+      function updateVideoTime() {
+        if (!videoPlayer || !videoPlayer.duration) return;
+        const current = videoPlayer.currentTime;
+        const total = videoPlayer.duration;
+        if (videoSeekSlider) videoSeekSlider.value = (current / total) * 100;
+        if (videoTimeDisplay) videoTimeDisplay.textContent = `${formatTime(current)} / ${formatTime(total)}`;
+      }
+
+      if (videoPlayer) {
+        videoPlayer.addEventListener('loadedmetadata', () => {
+          videoPlayer.style.display = 'block';
+          if (videoPlaceholder) videoPlaceholder.style.display = 'none';
+          updateVideoTime();
+        });
+
+        videoPlayer.addEventListener('timeupdate', updateVideoTime);
+
+        videoPlayer.addEventListener('ended', () => {
+          if (tvPlayBtn) tvPlayBtn.textContent = '▶ Phát Video';
+        });
+
+        videoPlayer.addEventListener('error', () => {
+          if (videoPlaceholder) videoPlaceholder.style.display = 'flex';
+        });
+
+        videoPlayer.addEventListener('click', () => {
+          if (videoPlayer.paused) {
+            videoPlayer.play().catch(() => {});
+            if (tvPlayBtn) tvPlayBtn.textContent = '❚❚ Tạm Dừng';
+          } else {
+            videoPlayer.pause();
+            if (tvPlayBtn) tvPlayBtn.textContent = '▶ Phát Video';
+          }
+        });
+      }
+
+      if (videoSeekSlider && videoPlayer) {
+        videoSeekSlider.addEventListener('input', () => {
+          if (videoPlayer.duration) {
+            videoPlayer.currentTime = (videoSeekSlider.value / 100) * videoPlayer.duration;
+            updateVideoTime();
+          }
+        });
+      }
+
+      if (tvPlayBtn && videoPlayer) {
+        tvPlayBtn.addEventListener('click', () => {
+          if (videoPlayer.paused) {
+            videoPlayer.play().catch(() => {});
+            tvPlayBtn.textContent = '❚❚ Tạm Dừng';
+          } else {
+            videoPlayer.pause();
+            tvPlayBtn.textContent = '▶ Phát Video';
+          }
+        });
+      }
+
+      if (tvStopBtn && videoPlayer) {
+        tvStopBtn.addEventListener('click', () => {
+          videoPlayer.pause();
+          videoPlayer.currentTime = 0;
+          if (tvPlayBtn) tvPlayBtn.textContent = '▶ Phát Video';
+          updateVideoTime();
+        });
+      }
+
+      if (tvRewindBtn && videoPlayer) {
+        tvRewindBtn.addEventListener('click', () => {
+          videoPlayer.currentTime = Math.max(0, videoPlayer.currentTime - 10);
+          updateVideoTime();
+        });
+      }
+
+      if (tvForwardBtn && videoPlayer) {
+        tvForwardBtn.addEventListener('click', () => {
+          videoPlayer.currentTime = Math.min(videoPlayer.duration || Infinity, videoPlayer.currentTime + 10);
+          updateVideoTime();
+        });
+      }
+
+      if (tvMuteBtn && videoPlayer) {
+        tvMuteBtn.addEventListener('click', () => {
+          videoPlayer.muted = !videoPlayer.muted;
+          tvMuteBtn.textContent = videoPlayer.muted ? '🔇 Bật Tiếng' : '🔊 Tắt Tiếng';
+        });
+      }
 
       function handleVideoFile(file) {
-        if (!file) return;
-        const objUrl = URL.createObjectURL(file);
-        videoPlayer.src = objUrl;
+        if (!file || !videoPlayer) return;
+        videoPlayer.src = URL.createObjectURL(file);
         videoPlayer.style.display = 'block';
-        videoPlaceholder.style.display = 'none';
+        if (videoPlaceholder) videoPlaceholder.style.display = 'none';
         videoPlayer.play().catch(() => {});
-        tvPlayBtn.textContent = '❚❚ Tạm Dừng';
+        if (tvPlayBtn) tvPlayBtn.textContent = '❚❚ Tạm Dừng';
       }
 
       if (videoFileInput) {
         videoFileInput.addEventListener('change', (e) => handleVideoFile(e.target.files[0]));
       }
-
-      // Click anywhere on phone mockup to pick video if empty
-      const phoneMockup = document.querySelector('.phone-mockup');
-      if (phoneMockup) {
-        phoneMockup.addEventListener('click', (e) => {
-          if (!videoPlayer.src && e.target !== videoFileInput) {
-            videoFileInput.click();
-          }
-        });
-      }
-
-      // Click directly on phone screen / video to toggle play/pause
-      videoPlayer.addEventListener('click', () => {
-        if (videoPlayer.paused) {
-          videoPlayer.play();
-          tvPlayBtn.textContent = '❚❚ Tạm Dừng';
-        } else {
-          videoPlayer.pause();
-          tvPlayBtn.textContent = '▶ Phát Video';
-        }
-      });
-
-      tvPlayBtn.addEventListener('click', () => {
-        if (!videoPlayer.src) {
-          if (videoFileInput) videoFileInput.click();
-          return;
-        }
-        if (videoPlayer.paused) {
-          videoPlayer.play();
-          tvPlayBtn.textContent = '❚❚ Tạm Dừng';
-        } else {
-          videoPlayer.pause();
-          tvPlayBtn.textContent = '▶ Phát Video';
-        }
-      });
-
-      tvMuteBtn.addEventListener('click', () => {
-        videoPlayer.muted = !videoPlayer.muted;
-        tvMuteBtn.textContent = videoPlayer.muted ? '🔇 Tắt Tiếng' : '🔊 Âm Thanh';
-      });
 
       // --- 9. CANVAS CONFETTI & FIREWORKS (HELLO KITTY EDITION) ---
       const confettiCanvas = document.getElementById('confetti-canvas');
